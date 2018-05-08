@@ -4,6 +4,7 @@
   max-width: 50px;
   border-radius: 50%;
   pointer-events: none;
+  margin-top: .8px;
 }
 
 .red{

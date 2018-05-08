@@ -9,15 +9,41 @@ let board = [
 const edgeX = board[0].length - 3;
 const edgeY = board.length - 3;
 const out = document.getElementById('output');
+const div = document.createElement('div');
 let currentClass = 'red';
+let gameWon = false;
 
-const columns = document.querySelectorAll("td");
-
+const columns = document.querySelectorAll(".colFlex");
+const reset = document.createElement('button');
+reset.addEventListener('click', resetBoard);
+reset.textContent = 'Reset';
+// reset.id = 'reset';
 for (let col of columns) {
   col.addEventListener("click", handleClick);
 }
+function resetBoard(){
 
+ for (col of columns){
+   while(col.firstChild){
+     col.removeChild(col.firstChild);
+   }
+ }
+ while(out.firstChild){
+  out.removeChild(out.firstChild);
+}
+ for (i=0; i<board.length; i++){
+   //console.log(board[i])
+  board[i] = board[i].map(x=>0);
+ }
+ 
+  gameWon = false;
+}
 function handleClick(){
+  if (gameWon === true){
+    div.textContent = 'Someone has won already. Reset the board to play again. '
+    out.appendChild(div);
+    out.appendChild(reset);
+  }else{
   currentClass === 'red' ? currentClass = 'black' : currentClass ='red';
   const disk = document.createElement('div');
   disk.classList = currentClass;
@@ -29,12 +55,17 @@ function handleClick(){
   const boardRowPosition = 6 - col.childElementCount; //
 
 
-  board[boardRowPosition][col.id - 1] = currentClass;
-  console.log(board)
-  console.log(boardRowPosition, (col.id - 1));
-  checkMatches() ? out.textContent = `${currentClass} is the winner!` : null;
-  //board[col.id][boardRowPosition] = 1;
+  board[boardRowPosition][col.dataset.id - 1] = currentClass;
 
+  if(checkMatches()){
+    div.textContent = `${currentClass} is the winner!`;
+    out.appendChild(div);
+    gameWon = true;
+    output.appendChild(reset);
+  } 
+
+  //board[col.id][boardRowPosition] = 1;
+  }//end else
  
  
 }
@@ -52,7 +83,7 @@ function checkHorizontal() {
 
       if (cell !== 0) {
         if (cell === board[y][x + 1] && cell === board[y][x + 2] && cell === board[y][x+3]) {
-          console.log(`Horizontal match found at ${x + 1} : ${y + 1}`);
+;
           return true;
         }
       }
@@ -66,7 +97,7 @@ function checkVertical() {
 
       if (cell !== 0) {
         if (cell === board[y+1][x] && cell === board[y+2][x] && cell === board[y+3][x]) {
-          console.log(`Vertical match found at ${x + 1} : ${y + 1}`);
+       
           return true;
         }
       }
@@ -81,7 +112,7 @@ function checkDiagonalRight(){
 
       if (cell !== 0) {
         if (cell === board[y+1][x+1] && cell === board[y+2][x+2]&& cell === board[y+3][x+3]) {
-          console.log(`Down-Right Diagonal match found at ${x + 1} : ${y + 1}`);
+       
           return true;
         }
       }
@@ -97,7 +128,7 @@ function checkDiagonalLeft(){
 
       if (cell !== 0) {
         if (cell === board[y-1][x+1] && cell === board[y-2][x+2] && cell === board[y-3][x+3]) {
-          console.log(`Down-Left Diagonal match found at ${x + 1} : ${y + 1}`);
+
           return true;
         }
       }
