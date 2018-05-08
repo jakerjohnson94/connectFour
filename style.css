@@ -5,6 +5,9 @@
   border-radius: 50%;
   pointer-events: none;
   margin-top: .8px;
+  position: relative;
+  animation: slide .63s ease-out;
+
 }
 
 .red{
@@ -25,13 +28,10 @@ table {
   max-height: 325px;
   min-height: 325px;
   width: 500px;
-  
-  
 }
 td {
   height: 100%;
   border: 1px solid black;
-
   max-width: 0px;
  
 }
@@ -42,4 +42,9 @@ td {
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: center;
+}
+
+@keyframes slide{
+  from{top: -300px;}
+  to{top: 0;}
 }
