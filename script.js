@@ -6,15 +6,18 @@ let board = [
   [0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0]
 ];
-let currentClass = "red";
+let currentClass = "Red";
+let winner;
 let gameWon = false;
 const edgeX = board[0].length - 3;
 const edgeY = board.length - 3;
 const outputWrapper = document.getElementById("output");
 const outputDiv = document.createElement("div");
-const columns = document.querySelectorAll(".colFlex");
+
+const columns = document.querySelectorAll(".column");
 const resetBtn = document.createElement("button");
 resetBtn.addEventListener("click", resetBoard);
+resetBtn.id = 'reset';
 resetBtn.textContent = "Reset";
 for (let col of columns) {
   col.addEventListener("click", handleClick);
@@ -22,33 +25,43 @@ for (let col of columns) {
 
 function handleClick() {
   if (gameWon === true) {
-    outputDiv.textContent =
-      "Someone has won already. Reset the board to play again. ";
-    outputWrapper.appendChild(outputDiv);
-    outputWrapper.appendChild(resetBtn);
+    declareWinner();
   } else {
-    currentClass === "red" ? (currentClass = "black") : (currentClass = "red");
+    currentClass === "Red" ? currentClass = "Black" : currentClass = "Red";
     const disk = document.createElement("div");
     disk.classList = currentClass;
     const currentColumn = event.target;
 
+    
     currentColumn.childElementCount < 6
       ? currentColumn.appendChild(disk)
-      : alert("too many discs in column");
+      : alert("The Column Is Full!");
 
     const boardRowPosition = 6 - currentColumn.childElementCount; //
 
-    board[boardRowPosition][currentColumn.dataset.id - 1] = currentClass;
+    board[boardRowPosition][currentColumn.dataset.id] = currentClass;
 
     if (checkMatches()) {
-      outputDiv.textContent = `${currentClass} is the winner!`;
-      outputWrapper.appendChild(outputDiv);
+      winner = currentClass;
       gameWon = true;
-      output.appendChild(resetBtn);
+     declareWinnerDelayed()
     }
 
   } //end else
 }
+function declareWinner(){
+  gameWon = true;
+  outputDiv.textContent =
+    `${winner} Is The Winner!`;
+    outputWrapper.classList = 'animatedOutput';
+    outputWrapper.appendChild(outputDiv);
+    outputWrapper.appendChild(resetBtn);
+}
+
+function declareWinnerDelayed(){
+  timeoutID = window.setTimeout(declareWinner, 635);
+}
+
 function checkMatches() {
   if (
     checkHorizontal() ||
@@ -137,12 +150,14 @@ function resetBoard() {
       col.removeChild(col.firstChild);
     }
   }
+
   while (outputWrapper.firstChild) {
     outputWrapper.removeChild(outputWrapper.firstChild);
   }
+
   for (i = 0; i < board.length; i++) {
-    //console.log(board[i])
     board[i] = board[i].map(x => 0);
   }
   gameWon = false;
+  winner = null
 }

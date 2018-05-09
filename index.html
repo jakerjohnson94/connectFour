@@ -7,37 +7,43 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="style.css">
   <title>Document</title>
+  <link href="https://fonts.googleapis.com/css?family=Poiret+One|Rajdhani:400,600" rel="stylesheet">
 </head>
 
 <body>
-  <div class="flexWrap">
+  <div id="flexWrap">
 
+    <div class="headerWrap">
+    <h1>Connect Four</h1>
+   
+  </div>
+  <div class="Red" id="mousePiece"></div>
 
+    <div id="columnWrapper">
 
-
-    <div class="colWrap">
-
-      <div class="colFlex" id="col-1" data-id="1">
+      <div class="column" id="col-1" data-id="0">
       </div>
 
-      <div class="colFlex" id="col-2" data-id="2"></div>
+      <div class="column" id="col-2" data-id="1"></div>
 
-      <div class="colFlex" id="col-3" data-id="3"></div>
+      <div class="column" id="col-3" data-id="2"></div>
 
-      <div class="colFlex" id="col-4" data-id="4"></div>
+      <div class="column" id="col-4" data-id="3"></div>
 
-      <div class="colFlex" id="col-5" data-id="5"></div>
+      <div class="column" id="col-5" data-id="4"></div>
 
-      <div class="colFlex" id="col-6" data-id="6"></div>
+      <div class="column" id="col-6" data-id="5"></div>
 
-      <div class="colFlex" id="col-7" data-id="7"></div>
+      <div class="column" id="col-7" data-id="6"></div>
 
     </div>
+    <footer> &copy; Jake Johnson 2018</footer>
     <div id="output"></div>
-
+    
   </div>
-
+  
   <script src="script.js"></script>
+
 </body>
 
 </html>
