@@ -14,4 +14,10 @@ function followMouse(){
   //find distance
   let distX = mouse.x - piecePosition.x;
   let distY = mouse.y - piecePosition.y;
+
+  piecePosition.x += distX/5;
+  piecePosition.y += distY/2;
+
+  piece.style.left = piecePosition.x +'px';
+  piece.style.top = piecePosition.y +'px';
 }
