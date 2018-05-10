@@ -1,4 +1,4 @@
-let board = [
+let gameBoard = [
   [0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0],
@@ -11,19 +11,21 @@ let winner;
 let redWins = 0;
 let blackWins = 0;
 let gameWon = false;
-const edgeX = board[0].length - 3;
-const edgeY = board.length - 3;
+const edgeX = gameBoard[0].length - 3;
+const edgeY = gameBoard.length - 3;
 const resetOutputWrapper = document.getElementById("resetOutput");
 const winnerOutput = document.getElementById("winnerOutput");
 const redWinCountOutput = document.getElementById("redWinCount");
 const blackWinCountOutput = document.getElementById("blackWinCount");
 blackWinCountOutput.textContent = blackWins;
 redWinCountOutput.textContent = redWins;
-const columns = document.querySelectorAll(".column");
+
 const resetBtn = document.createElement("button");
 resetBtn.addEventListener("click", resetBoard);
 resetBtn.id = "reset";
 resetBtn.textContent += "Reset";
+
+const columns = document.querySelectorAll(".column");
 for (let col of columns) {
   col.addEventListener("click", handleClick);
 }
@@ -33,6 +35,9 @@ function handleClick() {
     currentClass === "red" ? (currentClass = "black") : (currentClass = "red");
     const disk = document.createElement("div");
     disk.classList = currentClass;
+   
+   
+   
     const currentColumn = event.target;
 
     currentColumn.childElementCount < 6
@@ -41,9 +46,9 @@ function handleClick() {
 
     const boardRowPosition = 6 - currentColumn.childElementCount; //
 
-    board[boardRowPosition][currentColumn.dataset.id] = currentClass;
+    gameBoard[boardRowPosition][currentColumn.dataset.id] = currentClass;
 
-    if (checkMatches()) {
+    if (checkMatches(gameBoard)) {
       winner = currentClass;
       gameWon = true;
       declareWinnerDelayed();
@@ -67,18 +72,22 @@ function declareWinnerDelayed() {
   const timeoutID = window.setTimeout(declareWinner, 635);
 }
 
-function checkMatches() {
+function checkMatches(board) {
+ 
   if (
-    checkHorizontal() ||
-    checkVertical() ||
-    checkDiagonalRight() ||
-    checkDiagonalLeft()
+    checkHorizontal(board) ||
+    checkVertical(board) ||
+    checkDiagonalRight(board) ||
+    checkDiagonalLeft(board)
   ) {
     return true;
+  }else{
+    return false;
   }
 }
+
 function checkDraw() {
-  for (let row of board) {
+  for (let row of gameBoard) {
     if (row.includes(0)) {
       return;
     } else {
@@ -88,11 +97,12 @@ function checkDraw() {
     }
   }
 }
-function checkDrawDelayed(){
+
+function checkDrawDelayed() {
   const timeoutID = window.setTimeout(checkDraw, 635);
 }
 
-function checkHorizontal() {
+function checkHorizontal(board) {
   for (let y in board) {
     for (let x = 0; x < edgeX; x++) {
       let cell = board[y][x];
@@ -109,7 +119,8 @@ function checkHorizontal() {
     }
   }
 }
-function checkVertical() {
+
+function checkVertical(board) {
   for (let y = 0; y < edgeY; y++) {
     for (let x = 0; x < board[0].length; x++) {
       let cell = board[y][x];
@@ -127,7 +138,7 @@ function checkVertical() {
   }
 }
 
-function checkDiagonalRight() {
+function checkDiagonalRight(board) {
   for (let y = 0; y < edgeY; y++) {
     for (let x = 0; x < edgeX; x++) {
       let cell = board[y][x];
@@ -145,7 +156,7 @@ function checkDiagonalRight() {
   }
 }
 
-function checkDiagonalLeft() {
+function checkDiagonalLeft(board) {
   for (let y = 3; y < board.length; y++) {
     for (let x = 0; x < edgeX; x++) {
       let cell = board[y][x];
@@ -163,7 +174,7 @@ function checkDiagonalLeft() {
   }
 }
 
-function resetBoard() {
+function resetBoard(board) {
   for (col of columns) {
     while (col.firstChild) {
       col.removeChild(col.firstChild);
@@ -174,8 +185,8 @@ function resetBoard() {
     resetOutputWrapper.removeChild(resetOutputWrapper.firstChild);
   }
 
-  for (i = 0; i < board.length; i++) {
-    board[i] = board[i].map(x => 0);
+  for (i = 0; i < gameBoard.length; i++) {
+    gameBoard[i] = gameBoard[i].map(x => 0);
   }
   winnerOutput.style.visibility = "hidden";
   gameWon = false;

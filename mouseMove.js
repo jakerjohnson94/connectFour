@@ -34,7 +34,7 @@ function followMouse(){
    && (piecePosition.y ) < wrapCoords.bottom 
    && (piecePosition.y ) > (wrapCoords.top - 66))
    {
-    piece.style.top = (wrapCoords.top - 69 ) +'px';
+    piece.style.top = (wrapCoords.top - 71 ) +'px';
   } else{
     piece.style.top = piecePosition.y +'px';
   }
