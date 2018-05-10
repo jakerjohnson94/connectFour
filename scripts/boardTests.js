@@ -35,29 +35,29 @@ function boardTests() {
   //happy path
   let result = checkHorizontal(testBoard1);
   console.assert(result === true, {
-    "Board Array: ": testBoard1,
+    'Board Array: ': testBoard1,
     result: result,
-    expected: "true"
+    expected: 'true'
   });
 
   result = checkVertical(testBoard2);
   console.assert(result === true, {
-    "Board Array: ": testBoard2,
+    'Board Array: ': testBoard2,
     result: result,
-    expected: "true"
+    expected: 'true'
   });
 
   result = checkDiagonalLeft(testBoard3);
   console.assert(result === true, {
-    "Board Array: ": testBoard3,
+    'Board Array: ': testBoard3,
     result: result,
-    expected: "true"
+    expected: 'true'
   });
 
   result = checkDiagonalRight(testBoard4);
   console.assert(result === true, {
-    "Board Array: ": testBoard4,
+    'Board Array: ': testBoard4,
     result: result,
-    expected: "true"
+    expected: 'true'
   });
 }

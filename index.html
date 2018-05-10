@@ -1,58 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="style.css">
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <link rel='stylesheet' href='style.css'>
   <title>Document</title>
-  <link href="https://fonts.googleapis.com/css?family=Poiret+One|Rajdhani:400,600" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Poiret+One|Rajdhani:400,600' rel='stylesheet'>
 </head>
 
 <body>
-  <div id="flexWrap">
+  <div id='flexWrap'>
 
-    <div class="headerWrap">
+    <div class='headerWrap'>
       <h1>Connect Four</h1>
 
     </div>
 
     <aside>
       <h2>Red:</h2>
-      <span id="redWinCount"></span>
+      <span id='redWinCount'></span>
       <h2>Black:</h2>
-      <span id="blackWinCount"></span>
+      <span id='blackWinCount'></span>
     </aside>
 
-    <div id="mousePiece"></div>
+    <div id='mousePiece'></div>
 
-    <div id="columnWrapper">
-      <div id="winnerOutput"> </div>
-      <div class="column" id="col-1" data-id="0">
+    <div id='columnWrapper'>
+      <div id='winnerOutput'> </div>
+      <div class='column' id='col-1' data-id='0'>
       </div>
 
-      <div class="column" id="col-2" data-id="1"></div>
+      <div class='column' id='col-2' data-id='1'></div>
 
-      <div class="column" id="col-3" data-id="2"></div>
+      <div class='column' id='col-3' data-id='2'></div>
 
-      <div class="column" id="col-4" data-id="3"></div>
+      <div class='column' id='col-4' data-id='3'></div>
 
-      <div class="column" id="col-5" data-id="4"></div>
+      <div class='column' id='col-5' data-id='4'></div>
 
-      <div class="column" id="col-6" data-id="5"></div>
+      <div class='column' id='col-6' data-id='5'></div>
 
-      <div class="column" id="col-7" data-id="6"></div>
+      <div class='column' id='col-7' data-id='6'></div>
 
     </div>
     <footer> &copy; Jake Johnson 2018</footer>
-    <div id="resetOutput"></div>
+    <div id='resetOutput'></div>
 
   </div>
 
-  <script src="script.js"></script>
-  <script src="mouseMove.js"></script>
-  <script src="boardTests.js"></script>
+  <script src='scripts/gameLogic.js'></script>
+  <script src='scripts/mouseAnimations.js'></script>
+  <script src='scripts/boardTests.js'></script>
 </body>
 
 </html>

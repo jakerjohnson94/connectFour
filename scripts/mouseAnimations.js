@@ -13,6 +13,7 @@ let piecePosition = {x:0, y:0};
 let mouse = {x:0, y:0}
 
 setInterval(followMouse, 50);
+
 function getMouse(e){
   mouse.x = e.pageX;
   mouse.y = e.pageY;

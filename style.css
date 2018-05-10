@@ -10,27 +10,32 @@ html {
 body {
   height: 100%;
   font-family: Arial, Helvetica, sans-serif;
-  font-size:2em;
+  font-size: 2em;
   background-color: rgb(243, 250, 250);
 }
+
 div {
   text-align: center;
 }
+
 h1 {
   font-family: 'Rajdhani', sans-serif;
   font-size: 2em;
   text-align: right;
   margin-bottom: 1em;
 }
-h2{
+
+h2 {
   font-size: .7em;
 }
-aside{
+
+aside {
   position: absolute;
   align-self: flex-start;
   top: 200px;
   left: 50px;
 }
+
 footer {
   position: absolute;
   margin-top: 2.5em;
@@ -38,7 +43,6 @@ footer {
   bottom: 25px;
   left: 25px;
   font-size: .4em;
-  
 }
 
 #reset {
@@ -74,13 +78,12 @@ footer {
   background-color: rgb(36, 34, 34);
   background-image: url(blackPiece.png);
   background-size: cover;
-
 }
-#mousePiece{
+
+#mousePiece {
   animation: none;
   box-shadow: -1px 2px 3px 1px rgba(187, 185, 187, 0.678);
 }
-
 
 .headerWrap {
   display: flex;
@@ -131,14 +134,15 @@ footer {
   justify-content: center;
   align-items: center;
 }
-#winnerOutput{
+
+#winnerOutput {
   position: absolute;
   width: 600px;
   height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left:  -50px;
+  margin-left: -50px;
   margin-top: -50px;
   border-radius: 10px;
   z-index: 2;
