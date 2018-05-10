@@ -29,12 +29,12 @@ function followMouse(){
   piece.style.left = piecePosition.x +'px';
   
 
-  if((piecePosition.x + 33) > wrapCoords.left
-   && (piecePosition.x + 33) < wrapCoords.right 
+  if(piecePosition.x > (wrapCoords.left - 60)
+   && piecePosition.x  < (wrapCoords.right)
    && (piecePosition.y ) < wrapCoords.bottom 
-   && (piecePosition.y ) > wrapCoords.top)
+   && (piecePosition.y ) > (wrapCoords.top - 66))
    {
-    piece.style.top = (wrapCoords.top - 54 ) +'px';
+    piece.style.top = (wrapCoords.top - 69 ) +'px';
   } else{
     piece.style.top = piecePosition.y +'px';
   }
