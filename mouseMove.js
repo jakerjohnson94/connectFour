@@ -1,8 +1,7 @@
 const piece = document.getElementById('mousePiece');
 const boardWrapper = document.getElementById('columnWrapper')
 let wrapCoords = columnWrapper.getBoundingClientRect();
-let wrapLeft = wrapCoords.left;
-let wrapTop = wrapCoords.top;
+
 
 piece.style.position = 'absolute';
 
@@ -24,30 +23,34 @@ function followMouse(){
   let distX = mouse.x - piecePosition.x - 33 ;
   let distY = mouse.y - piecePosition.y - 33 ;
 
-  piecePosition.x += distX/3;
-  piecePosition.y += distY/2;
+  piecePosition.x += distX/2;
+  piecePosition.y += distY/3;
 
   piece.style.left = piecePosition.x +'px';
   
 
-  if(piecePosition.x > wrapCoords.left && piecePosition.x < wrapCoords.right && piecePosition.y < wrapCoords.bottom && piecePosition.y > wrapCoords.top){
-    piece.style.top = (wrapCoords.top - 75) +'px';
+  if((piecePosition.x + 33) > wrapCoords.left
+   && (piecePosition.x + 33) < wrapCoords.right 
+   && (piecePosition.y ) < wrapCoords.bottom 
+   && (piecePosition.y ) > wrapCoords.top)
+   {
+    piece.style.top = (wrapCoords.top - 54 ) +'px';
   } else{
     piece.style.top = piecePosition.y +'px';
   }
 
 
 
-  if(currentClass === 'Red'){
-  piece.classList.remove('Red') 
-  piece.classList.add('Black');
-  }else if(currentClass === 'Black'){
-  piece.classList.remove('Black');
-  piece.classList.add('Red');
+  if(currentClass === 'red'){
+  piece.classList.remove('red') 
+  piece.classList.add('black');
+  }else if(currentClass === 'black'){
+  piece.classList.remove('black');
+  piece.classList.add('red');
   }
 
  if( gameWon === true){
-  piece.classList.remove('Black') 
-  piece.classList.remove('Red')
+  piece.classList.remove('black') 
+  piece.classList.remove('red')
  }
 }

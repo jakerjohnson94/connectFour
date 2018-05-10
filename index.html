@@ -15,12 +15,19 @@
 
     <div class="headerWrap">
     <h1>Connect Four</h1>
-   
+  
   </div>
-  <div style='animation: none;' id="mousePiece"></div>
+
+  <aside> 
+    <h2></h2>
+      <h2>Red:</h2> <span id="redWinCount"></span>
+      <h2>Black:</h2> <span id="blackWinCount"></span>
+   </aside>
+
+  <div  id="mousePiece"></div>
 
     <div id="columnWrapper">
-
+      <div id="winnerOutput"> </div>
       <div class="column" id="col-1" data-id="0">
       </div>
 
@@ -38,7 +45,7 @@
 
     </div>
     <footer> &copy; Jake Johnson 2018</footer>
-    <div id="output"></div>
+    <div id="resetOutput"></div>
     
   </div>
   
