@@ -6,7 +6,7 @@ let gameBoard = [
   [0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0]
 ];
-let currentClass = 'red';
+let currentClass = "red";
 let winner;
 let currentColumn;
 let disk;
@@ -15,49 +15,49 @@ let blackWins = 0;
 let gameWon = false;
 const edgeX = gameBoard[0].length - 3;
 const edgeY = gameBoard.length - 3;
-const resetOutputWrapper = document.getElementById('resetOutput');
-const winnerOutput = document.getElementById('winnerOutput');
-const redWinCountOutput = document.getElementById('redWinCount');
-const blackWinCountOutput = document.getElementById('blackWinCount');
+const resetOutputWrapper = document.getElementById("resetOutput");
+const winnerOutput = document.getElementById("winnerOutput");
+const redWinCountOutput = document.getElementById("redWinCount");
+const blackWinCountOutput = document.getElementById("blackWinCount");
 blackWinCountOutput.textContent = blackWins;
 redWinCountOutput.textContent = redWins;
 
-const resetBtn = document.createElement('button');
-resetBtn.addEventListener('click', resetBoard);
-resetBtn.id = 'reset';
-resetBtn.textContent += 'Reset';
+const resetBtn = document.createElement("button");
+resetBtn.addEventListener("click", resetBoard);
+resetBtn.id = "reset";
+resetBtn.textContent += "Reset";
 
-const columns = document.querySelectorAll('.column');
+const columns = document.querySelectorAll(".column");
 for (let col of columns) {
-  col.addEventListener('click', handleClick);
+  col.addEventListener("click", handleClick);
 }
 
 function handleClick() {
   if (gameWon !== true) {
-    currentClass === 'red' ? (currentClass = 'black') : (currentClass = 'red');
-    disk = document.createElement('div');
+    currentClass === "red" ? (currentClass = "black") : (currentClass = "red");
+    disk = document.createElement("div");
     disk.classList = currentClass;
-   
+
     currentColumn = event.target;
 
     currentColumn.childElementCount < 6
       ? currentColumn.appendChild(disk)
-      : alert('The Column Is Full!');
+      : alert("The Column Is Full!");
 
-    const boardRowPosition = 6 - currentColumn.childElementCount; 
+    const boardRowPosition = 6 - currentColumn.childElementCount;
 
     gameBoard[boardRowPosition][currentColumn.dataset.id] = currentClass;
-    checkMatches(gameBoard) ? 
-    (winner = currentClass, gameWon = true, declareWinnerDelayed()) :
-    checkDrawDelayed();
+    checkMatches(gameBoard)
+      ? ((winner = currentClass), (gameWon = true), declareWinnerDelayed())
+      : checkDrawDelayed();
   } //end else
 }
 function declareWinner() {
   gameWon = true;
   const winnerCapitalized = capitalizeFirstLetter(winner);
   winnerOutput.textContent = `${winnerCapitalized} Is The Winner!`;
-  winnerOutput.style.visibility = 'visible';
-  winner === 'red' ? (redWins += 1) : (blackWins += 1);
+  winnerOutput.style.visibility = "visible";
+  winner === "red" ? (redWins += 1) : (blackWins += 1);
   blackWinCountOutput.textContent = blackWins;
   redWinCountOutput.textContent = redWins;
   resetOutputWrapper.appendChild(resetBtn);
@@ -68,7 +68,6 @@ function declareWinnerDelayed() {
 }
 
 function checkMatches(board) {
- 
   if (
     checkHorizontal(board) ||
     checkVertical(board) ||
@@ -76,7 +75,7 @@ function checkMatches(board) {
     checkDiagonalLeft(board)
   ) {
     return true;
-  }else{
+  } else {
     return false;
   }
 }
@@ -86,8 +85,8 @@ function checkDraw() {
     if (row.includes(0)) {
       return;
     } else {
-      winnerOutput.textContent = 'Its a Draw!';
-      winnerOutput.style.visibility = 'visible';
+      winnerOutput.textContent = "Its a Draw!";
+      winnerOutput.style.visibility = "visible";
       resetOutputWrapper.appendChild(resetBtn);
     }
   }
@@ -170,10 +169,16 @@ function checkDiagonalLeft(board) {
 }
 
 function resetBoard(board) {
-  for (col of columns) {
-    while (col.firstChild) {
-      col.removeChild(col.firstChild);
-    }
+  let pieces = [...document.getElementsByClassName("red")].concat([
+    ...document.getElementsByClassName("black")
+  ]);
+  console.log(pieces);
+  for (let appendedPiece of pieces) {
+    appendedPiece.id === "mousePiece"
+      ? null
+      : ((appendedPiece.style.animation = "slideOut 1s"),
+        appendedPiece.addEventListener("animationend", () => appendedPiece.remove())
+      );
   }
 
   while (resetOutputWrapper.firstChild) {
@@ -183,12 +188,11 @@ function resetBoard(board) {
   for (i = 0; i < gameBoard.length; i++) {
     gameBoard[i] = gameBoard[i].map(x => 0);
   }
-  winnerOutput.style.visibility = 'hidden';
+  winnerOutput.style.visibility = "hidden";
   gameWon = false;
   winner = null;
 }
-String.prototype.capitalize = () =>
-this.charAt(0).toUpperCase() + this.slice(1);
+
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);

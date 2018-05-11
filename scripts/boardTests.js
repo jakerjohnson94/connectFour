@@ -30,9 +30,25 @@ let testBoard4 = [
   [0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0]
 ];
+let testBoard5 = [
+  [1, 1, 1, 1, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0]
+];
+let testBoard6 = [
+  [0, 0, 0, 0, 0, 0, 1],
+  [0, 0, 0, 0, 0, 0, 1],
+  [0, 0, 0, 0, 0, 0, 1],
+  [0, 0, 0, 0, 0, 0, 1],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0]
+];
 boardTests();
 function boardTests() {
-  //happy path
+  //happy paths
   let result = checkHorizontal(testBoard1);
   console.assert(result === true, {
     'Board Array: ': testBoard1,
@@ -60,4 +76,20 @@ function boardTests() {
     result: result,
     expected: 'true'
   });
+
+//lets get craaaazy with it
+//top column omg lets see if it works
+result = checkMatches(testBoard5);
+  console.assert(result === true, {
+    'Board Array: ': testBoard5,
+    result: result,
+    expected: 'true'
+  });
+  result = checkMatches(testBoard6);
+  console.assert(result === true, {
+    'Board Array: ': testBoard6,
+    result: result,
+    expected: 'true'
+  });
+
 }
